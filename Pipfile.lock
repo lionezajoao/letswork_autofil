@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "78e137bf338d7a8a06e547466cf661d81b5e70070d012f92864c4884c7fe4454"
+            "sha256": "03f34de2895e09fc7de350fe839b37818bf6c38e677bd24a8d04d92a8d5ea3f7"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.11"
+            "python_version": "3.10.9"
         },
         "sources": [
             {
@@ -186,6 +186,14 @@
             "markers": "python_full_version >= '3.7.0'",
             "version": "==3.3.2"
         },
+        "exceptiongroup": {
+            "hashes": [
+                "sha256:5258b9ed329c5bbdd31a309f53cbfb0b155341807f6ff7606a1e801a891b29ad",
+                "sha256:a4785e48b045528f5bfe627b6ad554ff32def154f42372786903b7abcfe1aa16"
+            ],
+            "markers": "python_version < '3.11'",
+            "version": "==1.2.1"
+        },
         "h11": {
             "hashes": [
                 "sha256:8f19fbbe99e72420ff35c00b27a34cb9937e902a8b810e2c88300c6f0a3b699d",
@@ -200,6 +208,7 @@
                 "sha256:8801d45e15600990494988b193cd83ef470f59138bd964bbdf5f023f17cc7966"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==0.48"
         },
         "idna": {
@@ -304,7 +313,7 @@
                 "sha256:fdcbb4068117dfd9ce0138d068ac512843c52295ed996ae6dd1faf537b6dbc27",
                 "sha256:ff61bfd9253c3915e6d41c651d5f962da23eda633cf02262990094a18a55371a"
             ],
-            "markers": "python_version == '3.11'",
+            "markers": "python_version == '3.10'",
             "version": "==10.3.0"
         },
         "pyautogui": {
@@ -374,6 +383,7 @@
                 "sha256:f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==1.0.1"
         },
         "pytweening": {
@@ -396,6 +406,7 @@
                 "sha256:b1d0c33b38ca27d0499183e48e1dd09ff26973481f5d3ef2983073813ae6588d"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==4.20.0"
         },
         "six": {
@@ -462,6 +473,7 @@
                 "sha256:d7970052295bb9cda2c1a24cf0b872dd2c41ababcc78f7b6b8dc37a41e979a7e"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==4.0.1"
         },
         "workadays": {

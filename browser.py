@@ -14,13 +14,16 @@ from selenium.webdriver.support import expected_conditions as EC
 load_dotenv()
 
 class Browser:
-    def __init__(self, start_date, end_date, today_flag=False):
+    def __init__(self, start_date, end_date, start_time, end_time,project_name,today_flag=False):
         self.base_url = "https://app.letswork.com.br"
         self.username = os.environ.get("USERNAME")
         self.password = os.environ.get("PASSWORD")
         self.start_date = datetime.strptime(start_date, "%d-%m-%Y").strftime("%d/%m/%Y") if start_date else None
         self.end_date = datetime.strptime(end_date, "%d-%m-%Y").strftime("%d/%m/%Y") if end_date else None
         self.today_flag = today_flag
+        self.start_time= start_time if start_time else os.environ.get("START_TIME")
+        self.end_time= end_time if end_time else os.environ.get("END_TIME")
+        self.project_name= project_name if project_name else os.environ.get("PROJECT_NAME")
         self.days_list = self.list_days()
 
     def setup(self):
@@ -76,7 +79,7 @@ class Browser:
 
         # start date hour
         pyautogui.click(x=1066, y=317)
-        pyautogui.write("08:00")
+        pyautogui.write(self.start_time)
 
         # end date
         pyautogui.click(x=814, y=366)
@@ -84,11 +87,11 @@ class Browser:
 
         # end date hour
         pyautogui.click(x=1064, y=367)
-        pyautogui.write("17:00")
+        pyautogui.write(self.end_time)
 
         # project
         pyautogui.click(x=1000, y=422)
-        pyautogui.write("a")
+        pyautogui.write(self.project_name)
         pyautogui.press("enter")
 
         # task        
