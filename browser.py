@@ -14,7 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 load_dotenv()
 
 class Browser:
-    def __init__(self, start_date, end_date, start_time, end_time,project_name,today_flag=False):
+    def __init__(self, start_date, end_date, start_time, end_time, project_name, today_flag=False, delete=None):
         self.base_url = "https://app.letswork.com.br"
         self.username = os.environ.get("USERNAME")
         self.password = os.environ.get("PASSWORD")
@@ -24,6 +24,7 @@ class Browser:
         self.start_time= start_time if start_time else os.environ.get("START_TIME")
         self.end_time= end_time if end_time else os.environ.get("END_TIME")
         self.project_name= project_name if project_name else os.environ.get("PROJECT_NAME")
+        self.delete = delete
         self.days_list = self.list_days()
 
     def setup(self):
@@ -52,6 +53,15 @@ class Browser:
     def list_days(self):
         if self.today_flag:
             return [datetime.now().strftime("%d/%m/%Y")]
+        
+        if self.delete:
+            self.start_date = datetime.strptime(f"01-{self.delete}", "%d-%m-%Y")
+            try:
+                self.end_date = datetime.strptime(f"31-{self.delete}", "%d-%m-%Y")
+            except ValueError:
+                self.end_date = datetime.strptime(f"30-{self.delete}", "%d-%m-%Y")
+            return
+
         days = []
         current_date = datetime.strptime(self.start_date, "%d/%m/%Y")
         while current_date <= datetime.strptime(self.end_date, "%d/%m/%Y"):
@@ -96,6 +106,56 @@ class Browser:
 
         # task        
         pyautogui.click(x=1248, y=501)
+
+    def delete_month(self):
+        # Calculate the number of weeks
+        today = datetime.now()
+        weeks = (self.start_date - today).days // 7
+        month_weeks = (self.end_date - self.start_date).days // 7
+        for i in range(weeks, weeks + month_weeks + 1):
+            time.sleep(2)
+            self.driver.get(f"{self.base_url}/timesheet/index/{ i }")
+            
+            # Monday
+            time.sleep(1)
+            pyautogui.click(x=545, y=436)
+            pyautogui.click(x=222, y=510)
+            pyautogui.press("enter")
+            time.sleep(1)
+            pyautogui.press("esc")
+            
+            # Tuesday
+            time.sleep(1)
+            pyautogui.click(x=807, y=423)
+            pyautogui.click(x=222, y=510)
+            pyautogui.press("enter")
+            time.sleep(1)
+            pyautogui.press("esc")
+
+            # Wednesday
+            time.sleep(1)
+            pyautogui.click(x=1071, y=430)
+            pyautogui.click(x=222, y=510)
+            pyautogui.press("enter")
+            time.sleep(1)
+            pyautogui.press("esc")
+
+            # Thursday
+            time.sleep(1)
+            pyautogui.click(x=1259, y=433)
+            pyautogui.click(x=222, y=510)
+            pyautogui.press("enter")
+            time.sleep(1)
+            pyautogui.press("esc")
+
+            # Friday
+            time.sleep(1)
+            pyautogui.click(x=1498, y=413)
+            pyautogui.click(x=222, y=510)
+            pyautogui.press("enter")
+            time.sleep(1)
+            pyautogui.press("esc")
+
 
     def close(self):
         self.driver.close()

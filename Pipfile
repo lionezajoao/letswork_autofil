@@ -16,6 +16,7 @@ workadays = "*"
 [scripts]
 gap = "python main.py"
 today = "python main.py --today"
+delete = "python main.py --delete"
 help = "python main.py --help"
 
 [requires]
